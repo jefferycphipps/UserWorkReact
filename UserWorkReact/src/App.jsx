@@ -4,24 +4,22 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import UploadImages from "./components/image-upload.component";
-
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [file, setFile] = useState();
+  function handleChange(e) {
+      console.log(e.target.files);
+      setFile(URL.createObjectURL(e.target.files[0]));
+  }
 
   return (
-      <div className="container">
-        <h3>bezkoder.com</h3>
-        <h4>React Image Upload with Preview</h4>
-  
-        <div className="content">
-          <UploadImages />
-        </div>
+      <div className="App">
+          <h2>Add Image:</h2>
+          <input type="file" onChange={handleChange} />
+          <img src={file} />
       </div>
-    );
-
+  );
 }
 
 export default App
